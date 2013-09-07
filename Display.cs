@@ -9,7 +9,6 @@ namespace OrbitalHWMonitor
 {
     class Display
     {
-
         //display dimensions
         const byte rows = 4;
         const byte columns = 20;
@@ -19,13 +18,10 @@ namespace OrbitalHWMonitor
         const byte cls_byte = 88;
         const byte set_cursor_byte = 71;
 
-
-
         SerialPort port = new SerialPort();
 
         public Display(string portName, int baudRate)
         {
-
             port.PortName = portName;
             port.BaudRate = baudRate;
             port.DataBits = 8;
