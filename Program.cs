@@ -10,6 +10,9 @@ namespace OrbitalHWMonitor
     {
         static void Main(string[] args)
         {
+            Display display = new Display("COM3", 19200);
+            display.Write("TEST");
+            Console.ReadKey();
         }
     }
 }
