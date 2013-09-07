@@ -1,0 +1,2 @@
+D:\Projects\Developing\matrix_orbital_HW_monitor\OrbitalHWMonitor\bin\Debug\OrbitalHWMonitor.exe.config
+D:\Projects\Developing\matrix_orbital_HW_monitor\bin\Debug\OrbitalHWMonitor.exe.config
