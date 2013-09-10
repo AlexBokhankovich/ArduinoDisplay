@@ -7,16 +7,33 @@ using System.IO.Ports;
 
 namespace OrbitalHWMonitor
 {
+    /// <summary>
+    /// Represents display class
+    /// </summary>
     class Display
     {
         //display dimensions
+        #region dimensions
+
         const byte rows = 4;
         const byte columns = 20;
+
+        public byte Rows
+        {
+            get { return rows; }
+        }
+
+        public byte Columns
+        {
+            get { return columns; }
+        }
+        #endregion
 
         //clear screen command sequence
         const byte init_byte = 254;
         const byte cls_byte = 88;
         const byte set_cursor_byte = 71;
+        public char[,] currentState = new char[columns, rows];
 
         SerialPort port = new SerialPort();
 
@@ -43,9 +60,9 @@ namespace OrbitalHWMonitor
         /// </summary>
         /// <param name="column">Column number to move cursor to</param>
         /// <param name="row">row number to move cursor to</param>
-        public void SetCursorPosition(byte column, byte row)
+        public void SetCursorPosition(int column, int row)
         {
-            byte[] cursor_position = new byte[4] { init_byte, set_cursor_byte, column, row };
+            byte[] cursor_position = new byte[4] { init_byte, set_cursor_byte, (byte)column, (byte)row };
             port.Write(cursor_position, 0, cursor_position.Length);
         }
 
@@ -54,7 +71,7 @@ namespace OrbitalHWMonitor
             byte[] cls = new byte[2] { init_byte, cls_byte };
 
             //Send clear screen command to display
-            port.Write(cls, 0, cls.Length);         
+            port.Write(cls, 0, cls.Length);
         }
 
         public void ClosePort()
