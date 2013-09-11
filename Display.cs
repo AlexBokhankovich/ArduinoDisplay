@@ -10,10 +10,9 @@ namespace OrbitalHWMonitor
     /// <summary>
     /// Represents display class
     /// </summary>
-    class Display
+    class Display : IDisposable
     {
-        //display dimensions
-        #region dimensions
+        #region display dimensions
 
         const byte rows = 4;
         const byte columns = 20;
@@ -28,15 +27,21 @@ namespace OrbitalHWMonitor
             get { return columns; }
         }
         #endregion
+        #region control bytes
+        const byte init_byte = 254; //tells Matrix Orbital display next bytes are commands and parameters
+        const byte cls_byte = 88; //clear screen byte
+        const byte set_cursor_byte = 71; //set cursor byte
+        #endregion
 
-        //clear screen command sequence
-        const byte init_byte = 254;
-        const byte cls_byte = 88;
-        const byte set_cursor_byte = 71;
         public char[,] currentState = new char[columns, rows];
 
         SerialPort port = new SerialPort();
 
+        /// <summary>
+        /// Class constructor
+        /// </summary>
+        /// <param name="portName">port display connected to</param>
+        /// <param name="baudRate">port speed</param>
         public Display(string portName, int baudRate)
         {
             port.PortName = portName;
@@ -44,16 +49,16 @@ namespace OrbitalHWMonitor
             port.DataBits = 8;
             port.Parity = Parity.None;
             port.StopBits = StopBits.One;
-            port.Open();
+            port.Open();         
         }
         /// <summary>
         /// Writes text to the current cursor position
         /// </summary>
-        /// <param name="text"></param>
-        public void Write(string text)
+        /// <param name="text">text to display</param>
+        public void Write<T>(T text)
         {
             System.Text.ASCIIEncoding encoding = new ASCIIEncoding();
-            port.Write(encoding.GetBytes(text), 0, encoding.GetByteCount(text));
+            port.Write(encoding.GetBytes(text.ToString()), 0, encoding.GetByteCount(text.ToString()));
         }
         /// <summary>
         /// Sets the cursor to the desired position
@@ -66,18 +71,27 @@ namespace OrbitalHWMonitor
             port.Write(cursor_position, 0, cursor_position.Length);
         }
 
+        /// <summary>
+        /// Clears the display
+        /// </summary>
         public void ClearScreen()
         {
             byte[] cls = new byte[2] { init_byte, cls_byte };
-
-            //Send clear screen command to display
             port.Write(cls, 0, cls.Length);
         }
 
+        /// <summary>
+        /// Closes display port
+        /// </summary>
         public void ClosePort()
         {
-            port.Close();
+            this.port.Close();
         }
 
+
+        public void Dispose()
+        {
+            ClosePort();
+        }
     }
 }

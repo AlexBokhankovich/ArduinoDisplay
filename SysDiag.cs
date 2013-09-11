@@ -10,17 +10,22 @@ namespace OrbitalHWMonitor
     class SysDiag
     {       
         private static PerformanceCounter counter;
-               
-        public SysDiag()
+
+        public string CategoryName { get; set; }
+        public string CounterName { get; set; }
+        public string InstanceName { get; set; }
+
+
+        public SysDiag(string CategoryName, string CounterName, string InstanceName=null)
         {
             counter = new PerformanceCounter();
-            counter.CategoryName = "Processor";
-            counter.CounterName = "% Processor Time";
-            counter.InstanceName = "_Total";
+            counter.CategoryName = CategoryName;
+            counter.CounterName = CounterName;
+            counter.InstanceName = InstanceName;
         }
-        public string getCurrentCpuUsage()
+        public string getCurrentValue()
         {
-            return string.Format(@"CPU:{0:000}%",counter.NextValue());
+            return string.Format(@"{0:000}",counter.NextValue());
         }
     }
 }
