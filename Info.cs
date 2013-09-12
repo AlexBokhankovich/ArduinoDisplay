@@ -8,7 +8,19 @@ namespace OrbitalHWMonitor
 {
     class Info
     {
-        public string Time(bool showSec = true)
+        public string CPUUsage
+        { get { return GetCPULoad(); } }
+
+        public string RAMFree
+        { get { return GetRAMAvailable(); } }
+
+        public string TimeWithSec
+        { get { return GetTime(); } }
+
+        public string TimeWithoutSec
+        { get { return GetTime(false); } }
+
+        public string GetTime(bool showSec = true)
         {
             string timePat = string.Empty;
 
@@ -24,14 +36,23 @@ namespace OrbitalHWMonitor
             counter.CategoryName = "Processor";
             counter.CounterName = "% Processor Time";
             counter.InstanceName = "_Total";
-            return String.Format("CPU:" + counter.getCurrentValue() + "%");
+            var temp = counter.getCurrentValue();
+            if (temp.Length == 3)
+                return temp;
+            if (temp.Length == 2)
+                return " " + temp;
+            else
+                return " " + " " + temp;
+
+
         }
 
-        public string GetRAMUsage()
+        public string GetRAMAvailable()
         {
             counter.CategoryName = "Memory";
             counter.CounterName = "Available MBytes";
             counter.InstanceName = string.Empty;
+
             return String.Format(counter.getCurrentValue());
         }
     }

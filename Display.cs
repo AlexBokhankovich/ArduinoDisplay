@@ -49,7 +49,7 @@ namespace OrbitalHWMonitor
             port.DataBits = 8;
             port.Parity = Parity.None;
             port.StopBits = StopBits.One;
-            port.Open();         
+            port.Open();
         }
         /// <summary>
         /// Writes text to the current cursor position
@@ -64,11 +64,49 @@ namespace OrbitalHWMonitor
         /// Sets the cursor to the desired position
         /// </summary>
         /// <param name="column">Column number to move cursor to</param>
-        /// <param name="row">row number to move cursor to</param>
+        /// <param name="row">Row number to move cursor to</param>
         public void SetCursorPosition(int column, int row)
         {
             byte[] cursor_position = new byte[4] { init_byte, set_cursor_byte, (byte)column, (byte)row };
             port.Write(cursor_position, 0, cursor_position.Length);
+        }
+
+        /// <summary>
+        /// Writes a text string on display. 
+        /// Trims string to match columns count
+        /// </summary>
+        /// <param name="textLine">String to display</param>
+        /// <param name="lineNumber">line number to display string at</param>
+        internal void WriteLine(string textLine, int lineNumber)
+        {
+            Console.WriteLine();
+
+            if (textLine.Length > Columns)
+            {
+                textLine = textLine.Substring(0, Columns);
+            }
+            char[,] tempState = new char[Columns, Rows];
+            for (int i = lineNumber; i <= textLine.Length; i++)
+            {
+                tempState[i, lineNumber] = textLine[i - lineNumber];
+            }
+            for (int i = 1; i < Columns; i++)
+            {
+                if (tempState[i, lineNumber] != currentState[i, lineNumber])
+                {
+                    SetCursorPosition(i, lineNumber);
+                    Write(tempState[i, lineNumber]);
+                    currentState[i, lineNumber] = tempState[i, lineNumber];
+                    //TODO: this is for debugging only. Writes changed data in green color
+                    ConsoleColor backColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write(currentState[i, lineNumber]);
+                    Console.ForegroundColor = backColor;
+                }
+                    //TODO: this is for debugging only. See above comment
+                else
+                    Console.Write(currentState[i, lineNumber]);
+            }
         }
 
         /// <summary>

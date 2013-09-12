@@ -25,7 +25,7 @@ namespace OrbitalHWMonitor
         }
         public string getCurrentValue()
         {
-            return string.Format(@"{0:000}",counter.NextValue());
+            return Math.Round((double)counter.NextValue()).ToString();
         }
     }
 }
