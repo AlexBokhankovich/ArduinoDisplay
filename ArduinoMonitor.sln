@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.SystemInfoPl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.Configuration", "ArduinoDisplay.Configuration\ArduinoDisplay.Configuration.csproj", "{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{42741D3D-C783-40AA-B8D5-41628D186D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,5 +98,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58} = {42741D3D-C783-40AA-B8D5-41628D186D87}
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D} = {42741D3D-C783-40AA-B8D5-41628D186D87}
+		{0BD8261F-6930-461E-BB95-324C2306191E} = {42741D3D-C783-40AA-B8D5-41628D186D87}
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7} = {42741D3D-C783-40AA-B8D5-41628D186D87}
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B} = {42741D3D-C783-40AA-B8D5-41628D186D87}
 	EndGlobalSection
 EndGlobal
