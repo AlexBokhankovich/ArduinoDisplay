@@ -1,0 +1,100 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.WindowsService", "ArduinoDisplay.WindowsService\ArduinoDisplay.WindowsService.csproj", "{74340A65-115B-4716-9E67-1AD52E9653DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FF6560D-86E0-410F-BBB4-208BE0351C8C} = {3FF6560D-86E0-410F-BBB4-208BE0351C8C}
+		{0BD8261F-6930-461E-BB95-324C2306191E} = {0BD8261F-6930-461E-BB95-324C2306191E}
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B} = {3CFD836C-330E-4A91-9822-5F7FCDD4B98B}
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58} = {6CF3099F-D35F-4F08-A969-BC129CB97F58}
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7} = {2C722CA4-5660-4572-8FC5-481ECB41F8E7}
+		{92B5EAB5-6203-4921-A11A-BA57AD8969A5} = {92B5EAB5-6203-4921-A11A-BA57AD8969A5}
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D} = {08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30} = {303817FA-7437-4D1A-8F8E-DFFA79C14E30}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.CLI", "ArduinoDisplay.CLI\ArduinoDisplay.CLI.csproj", "{D7A39D2F-66BA-49E8-ADED-CD22760967F8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BD8261F-6930-461E-BB95-324C2306191E} = {0BD8261F-6930-461E-BB95-324C2306191E}
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B} = {3CFD836C-330E-4A91-9822-5F7FCDD4B98B}
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58} = {6CF3099F-D35F-4F08-A969-BC129CB97F58}
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7} = {2C722CA4-5660-4572-8FC5-481ECB41F8E7}
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D} = {08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30} = {303817FA-7437-4D1A-8F8E-DFFA79C14E30}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.PluginInterface", "ArduinoDisplay.PluginInterface\ArduinoDisplay.PluginInterface.csproj", "{3FF6560D-86E0-410F-BBB4-208BE0351C8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.PluginLoader", "ArduinoDisplay.PluginLoader\ArduinoDisplay.PluginLoader.csproj", "{303817FA-7437-4D1A-8F8E-DFFA79C14E30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.WeatherPlugin", "ArduinoDisplay.WeatherPlugin\ArduinoDisplay.WeatherPlugin.csproj", "{6CF3099F-D35F-4F08-A969-BC129CB97F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.Core", "ArduinoDisplay.Core\ArduinoDisplay.Core.csproj", "{92B5EAB5-6203-4921-A11A-BA57AD8969A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.DateTimePlugin", "ArduinoDisplay.DateTimePlugin\ArduinoDisplay.DateTimePlugin.csproj", "{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.GeoLocation", "ArduinoDisplay.GeoLocation\ArduinoDisplay.GeoLocation.csproj", "{0BD8261F-6930-461E-BB95-324C2306191E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.GeoCommon", "ArduinoDisplay.GeoCommon\ArduinoDisplay.GeoCommon.csproj", "{2C722CA4-5660-4572-8FC5-481ECB41F8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.SystemInfoPlugin", "ArduinoDisplay.SystemInfoPlugin\ArduinoDisplay.SystemInfoPlugin.csproj", "{3CFD836C-330E-4A91-9822-5F7FCDD4B98B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArduinoDisplay.Configuration", "ArduinoDisplay.Configuration\ArduinoDisplay.Configuration.csproj", "{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74340A65-115B-4716-9E67-1AD52E9653DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74340A65-115B-4716-9E67-1AD52E9653DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74340A65-115B-4716-9E67-1AD52E9653DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74340A65-115B-4716-9E67-1AD52E9653DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7A39D2F-66BA-49E8-ADED-CD22760967F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7A39D2F-66BA-49E8-ADED-CD22760967F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7A39D2F-66BA-49E8-ADED-CD22760967F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7A39D2F-66BA-49E8-ADED-CD22760967F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF6560D-86E0-410F-BBB4-208BE0351C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF6560D-86E0-410F-BBB4-208BE0351C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF6560D-86E0-410F-BBB4-208BE0351C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF6560D-86E0-410F-BBB4-208BE0351C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{303817FA-7437-4D1A-8F8E-DFFA79C14E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF3099F-D35F-4F08-A969-BC129CB97F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92B5EAB5-6203-4921-A11A-BA57AD8969A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92B5EAB5-6203-4921-A11A-BA57AD8969A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92B5EAB5-6203-4921-A11A-BA57AD8969A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92B5EAB5-6203-4921-A11A-BA57AD8969A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08CEB6BB-1380-45CF-A5B2-7D91D1592C0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD8261F-6930-461E-BB95-324C2306191E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD8261F-6930-461E-BB95-324C2306191E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD8261F-6930-461E-BB95-324C2306191E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD8261F-6930-461E-BB95-324C2306191E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C722CA4-5660-4572-8FC5-481ECB41F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CFD836C-330E-4A91-9822-5F7FCDD4B98B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C68CB2-CBE6-406E-BAFC-22A78AEE31C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

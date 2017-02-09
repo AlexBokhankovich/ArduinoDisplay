@@ -1,7 +1,0 @@
-D:\Projects\Developing\matrix_orbital_HW_monitor\OrbitalHWMonitor\bin\Debug\OrbitalHWMonitor.exe.config
-D:\Projects\Developing\matrix_orbital_HW_monitor\bin\Debug\OrbitalHWMonitor.exe.config
-D:\Projects\Developing\matrix_orbital_HW_monitor\bin\Debug\OrbitalHWMonitor.exe
-D:\Projects\Developing\matrix_orbital_HW_monitor\bin\Debug\OrbitalHWMonitor.pdb
-D:\Projects\Developing\matrix_orbital_HW_monitor\obj\Debug\OrbitalHWMonitor.csprojResolveAssemblyReference.cache
-D:\Projects\Developing\matrix_orbital_HW_monitor\obj\Debug\OrbitalHWMonitor.exe
-D:\Projects\Developing\matrix_orbital_HW_monitor\obj\Debug\OrbitalHWMonitor.pdb
