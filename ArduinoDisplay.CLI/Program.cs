@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     using ArduinoDisplay.Core;
@@ -53,6 +54,7 @@
                 arduinoDisplayPlugin.DataReady += ValueDataReady;
             }
 
+            Console.WriteLine($"Loaded {bs.Plugins.Count} plugins");
             Console.WriteLine("Monitor is running...Press any key to exit...");
             Console.ReadKey(true);
         }

@@ -7,7 +7,7 @@
     /// <summary>
     /// The weather updater.
     /// </summary>
-    public class WeatherUpdater : GenericUpdater<WeatherUpdateEventArgs, string>
+    public class WeatherUpdater : GenericUpdater<DataReadyEventArgs, string>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WeatherUpdater"/> class.
@@ -31,9 +31,9 @@
         /// </param>
         protected override void OnTimerElapsed(object state)
         {
-            var forecastStr = this.Provider.Value;
-            var forecast = new ForecastParser(forecastStr).ParseForecast();
-            var args = new WeatherUpdateEventArgs(forecast.TemperatureC.ToString(CultureInfo.InvariantCulture));
+            var forecast = this.Provider.Value;
+           
+            var args = new DataReadyEventArgs(forecast);
             this.InvokeDataReadyEvent(args);
         }
     }

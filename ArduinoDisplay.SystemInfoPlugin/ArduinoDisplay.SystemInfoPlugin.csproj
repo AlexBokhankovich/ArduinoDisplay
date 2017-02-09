@@ -33,6 +33,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,20 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MemoryInfo.cs" />
+    <Compile Include="OhwMonitor\OpenHardwareMonitorWrapper.cs" />
+    <Compile Include="OhwMonitor\PersistentSettings.cs" />
+    <Compile Include="OhwMonitor\HardwareComparer.cs" />
     <Compile Include="SystemInfoConfig.cs" />
-    <Compile Include="PerformanceCounterWrapper.cs" />
-    <Compile Include="SysInfoType.cs" />
     <Compile Include="SystemInfoPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SysInfoReadyArgs.cs" />
     <Compile Include="SystemInfoDataProvider.cs" />
     <Compile Include="SystemInfoDataUpdater.cs" />
+    <Compile Include="OhwMonitor\UpdateVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ArduinoDisplay.PluginInterface\ArduinoDisplay.PluginInterface.csproj">
       <Project>{3ff6560d-86e0-410f-bbb4-208be0351c8c}</Project>
       <Name>ArduinoDisplay.PluginInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\External\OpenHardwareMonitorLib.csproj">
+      <Project>{b0397530-545a-471d-bb74-027ae456df1a}</Project>
+      <Name>OpenHardwareMonitorLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

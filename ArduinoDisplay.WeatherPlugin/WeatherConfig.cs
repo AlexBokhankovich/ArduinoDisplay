@@ -1,5 +1,7 @@
 ﻿namespace ArduinoDisplay.WeatherPlugin
 {
+    using Newtonsoft.Json.Serialization;
+
     /// <summary>
     /// The weather config.
     /// </summary>
@@ -9,6 +11,11 @@
         /// Gets or sets the api key.
         /// </summary>
         public string ApiKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the format.
+        /// </summary>
+        public string Format { get; set; }
 
         /// <summary>
         /// Gets or sets the city.

@@ -7,7 +7,7 @@
     /// <summary>
     /// The date time updater.
     /// </summary>
-    public class DateTimeUpdater : GenericUpdater<DateTimeEventArgs, string>
+    public class DateTimeUpdater : GenericUpdater<DataReadyEventArgs, string>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DateTimeUpdater"/> class.
@@ -33,7 +33,7 @@
         /// </exception>
         protected override void OnTimerElapsed(object state)
         {
-            this.InvokeDataReadyEvent(new DateTimeEventArgs(this.Provider.Value));
+            this.InvokeDataReadyEvent(new DataReadyEventArgs(this.Provider.Value));
         }
     }
 }

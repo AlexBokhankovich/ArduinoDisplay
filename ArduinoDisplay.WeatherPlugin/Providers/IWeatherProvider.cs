@@ -1,6 +1,7 @@
 ﻿namespace ArduinoDisplay.WeatherPlugin.Providers
 {
     using ArduinoDisplay.GeoCommon;
+    using ArduinoDisplay.PluginInterface;
 
     /// <summary>
     ///     The WeatherProvider interface.

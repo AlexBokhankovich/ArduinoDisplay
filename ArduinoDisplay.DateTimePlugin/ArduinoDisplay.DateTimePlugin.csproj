@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DateTimeEventArgs.cs" />
     <Compile Include="DateTimePlugin.cs" />
     <Compile Include="DateTimeProvider.cs" />
     <Compile Include="DateTimeUpdater.cs" />

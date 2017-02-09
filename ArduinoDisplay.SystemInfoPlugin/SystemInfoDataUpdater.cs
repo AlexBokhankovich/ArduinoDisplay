@@ -5,7 +5,7 @@
     /// <summary>
     /// The system info data updater.
     /// </summary>
-    public class SystemInfoDataUpdater : GenericUpdater<SysInfoReadyArgs, string>
+    public class SystemInfoDataUpdater : GenericUpdater<DataReadyEventArgs, string>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemInfoDataUpdater"/> class.
@@ -26,7 +26,7 @@
         /// </param>
         protected override void OnTimerElapsed(object state)
         {
-            this.InvokeDataReadyEvent(new SysInfoReadyArgs(this.Provider.Value));
+            this.InvokeDataReadyEvent(new DataReadyEventArgs(this.Provider.Value));
         }
     }
 }

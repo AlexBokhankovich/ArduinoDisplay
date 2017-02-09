@@ -12,6 +12,8 @@
     /// </summary>
     public class ForecastProvider : IDataProvider<string>
     {
+        private string format;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ForecastProvider"/> class.
         /// </summary>
@@ -30,8 +32,10 @@
             IWeatherProvider weatherProvider,
             Coordinate coord = null,
             string cityName = null,
-            string countryCode = null)
+            string countryCode = null,
+            string format = null)
         {
+            this.format = format ?? "{0}";
             var geoProv = new GeoLocationProvider();
             coord = coord ?? new GeoLocationProvider().Coordinate;
 
@@ -68,7 +72,8 @@
         /// </returns>
         private string GetForecast()
         {
-            return this.WeatherProvider.CurrentWeather;
+            var forecast = new ForecastParser(this.WeatherProvider.CurrentWeather).ParseForecast();
+            return string.Format(this.format, forecast.TemperatureC);
         }
     }
 }

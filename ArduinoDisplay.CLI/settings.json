@@ -1,0 +1,98 @@
+﻿{
+  "Plugins": [
+    {
+      "Id": "WeatherIvanovo",
+      "Name": "Weather",
+      "Options": {
+        "City": "Ivanovo",
+        "CountryCode": "RU",
+        "Format": "Ivanovo:{0} °C",
+        "Provider": "OpenWeatherMap",
+        "UpdateInterval": "360000",
+        "ApiKey": "03954fbdbc86d025e44758bed53a6cf4"
+      }
+    },
+    {
+      "Id": "SystemInfoCpuUtilization",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "CPU",
+        "SensorType": "Load",
+        "SensorName": "CPU Total",
+        "Format": "CPU:{0}%",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "SystemInfoRamUtilization",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "RAM",
+        "SensorType": "Load",
+        "SensorName": "Memory",
+        "Format": "RamUsed:{0}%",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "SystemInfoRamFree",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "RAM",
+        "SensorType": "Data",
+        "SensorName": "Available Memory",
+        "Format": "RamFree:{0}GB",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "SystemInfoRamUsed",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "RAM",
+        "SensorType": "Data",
+        "SensorName": "Used Memory",
+        "Format": "RamTotal:{0}GB",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "CPUTemp1",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "CPU",
+        "SensorType": "Temperature",
+        "Format": "Temp1: {0} °C",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "CPUTemp2",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "CPU",
+        "SensorType": "Temperature",
+        "Format": "Temp2: {0} °C",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "GPUCoreTemp",
+      "Name": "SystemInfo",
+      "Options": {
+        "HardwareType": "GpuNvidia",
+        "SensorType": "Temperature",
+        "Format": "GPUTemp: {0} °C",
+        "UpdateInterval": "1000"
+      }
+    },
+    {
+      "Id": "DateTime",
+      "Name": "DateTime",
+      "Options": {
+        "Format": "HH:mm:ss",
+        "UpdateInterval": "1000"
+      }
+    }
+  ]
+}

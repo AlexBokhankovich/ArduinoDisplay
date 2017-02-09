@@ -4,6 +4,8 @@
 
     using ArduinoDisplay.PluginInterface;
 
+    using OpenHardwareMonitor.Hardware;
+
     /// <summary>
     /// The system info.
     /// </summary>
@@ -19,6 +21,10 @@
         /// </summary>
         public SystemInfoConfig Config { get; set; }
 
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// Gets the name.
@@ -28,7 +34,12 @@
         /// <summary>
         /// The type.
         /// </summary>
-        public SysInfoType Type => (SysInfoType)Enum.Parse(typeof(SysInfoType), this.Config.Type);
+        public HardwareType HardwareType => (HardwareType)Enum.Parse(typeof(HardwareType), this.Config.HardwareType);
+
+        public SensorType SensorType => (SensorType)Enum.Parse(typeof(SensorType), this.Config.SensorType);
+
+        public string SensorName => this.Config.SensorName;
+
 
         /// <summary>
         ///     Gets or sets the datetime provider.
@@ -47,8 +58,10 @@
                               {
                                   UpdateInterval = config.UpdateInterval ?? 1000,
                                   Format = config.Format,
-                                  Type = config.Type
-                              };
+                                  HardwareType = config.HardwareType,
+                                  SensorType = config.SensorType,
+                                  SensorName = config.SensorName
+            };
         }
 
         /// <summary>
@@ -56,7 +69,7 @@
         /// </summary>
         public void Init()
         {
-            this.Provider = new SystemInfoDataProvider(this.Type, this.Config.Format);
+            this.Provider = new SystemInfoDataProvider(this.HardwareType, this.SensorType, this.SensorName, this.Config.Format);
         }
 
         /// <summary>
@@ -89,9 +102,9 @@
         /// <param name="e">
         ///     The e.
         /// </param>
-        private void SysInfoProviderDataReady(object sender, SysInfoReadyArgs e)
+        private void SysInfoProviderDataReady(object sender, DataReadyEventArgs e)
         {
-            var datareadyEventArgs = new DataReadyEventArgs(e.Data);
+            var datareadyEventArgs = new DataReadyEventArgs(e.NewData);
             this.OnDataReady(datareadyEventArgs);
         }
     }

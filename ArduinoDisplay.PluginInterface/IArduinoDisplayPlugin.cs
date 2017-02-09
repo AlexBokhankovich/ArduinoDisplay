@@ -13,9 +13,22 @@
         event EventHandler<DataReadyEventArgs> DataReady;
 
         /// <summary>
+        /// Gets or sets the usnique plugin identifier
+        /// </summary>
+        string Id { get; set; }
+
+        /// <summary>
         ///     Gets the name.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// The configure.
+        /// </summary>
+        /// <param name="config">
+        /// The config.
+        /// </param>
+        void Configure(dynamic config);
 
         /// <summary>
         ///     The init.
@@ -26,13 +39,5 @@
         ///     The start.
         /// </summary>
         void Start();
-
-        /// <summary>
-        /// The configure.
-        /// </summary>
-        /// <param name="config">
-        /// The config.
-        /// </param>
-        void Configure(dynamic config);
     }
 }

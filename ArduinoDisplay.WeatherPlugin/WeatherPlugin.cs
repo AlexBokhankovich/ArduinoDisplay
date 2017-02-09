@@ -32,6 +32,16 @@
         public string CountryCode => this.GetCountryCode();
 
         /// <summary>
+        /// The format.
+        /// </summary>
+        public string Format => this.Config.Format;
+
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
         ///     The name.
         /// </summary>
         public string Name => "Weather";
@@ -49,7 +59,7 @@
         /// <summary>
         /// Gets or sets the updater.
         /// </summary>
-        public IUpdater<WeatherUpdateEventArgs, string> Updater { get; set; }
+        public IUpdater<DataReadyEventArgs, string> Updater { get; set; }
 
         /// <summary>
         /// The weather provider type.
@@ -80,7 +90,8 @@
                                   CountryCode = config.CountryCode,
                                   Provider = config.Provider,
                                   UpdateInterval = config.UpdateInterval ?? 1000 * 60 * 60,
-                                  ApiKey = config.ApiKey
+                                  ApiKey = config.ApiKey,
+                                  Format = config.Format
                               };
         }
 
@@ -97,7 +108,8 @@
                     this.ForecastProvider = new ForecastProvider(
                         weatherProv,
                         cityName: this.City,
-                        countryCode: this.CountryCode);
+                        countryCode: this.CountryCode,
+                        format: this.Format);
 
                     break;
                 default:
@@ -185,9 +197,9 @@
         /// <param name="e">
         /// The e.
         /// </param>
-        private void UpdaterDataReady(object sender, WeatherUpdateEventArgs e)
+        private void UpdaterDataReady(object sender, DataReadyEventArgs e)
         {
-            this.DataReady?.Invoke(this, new DataReadyEventArgs(e.Weather));
+            this.DataReady?.Invoke(this, new DataReadyEventArgs(e.NewData));
         }
     }
 }

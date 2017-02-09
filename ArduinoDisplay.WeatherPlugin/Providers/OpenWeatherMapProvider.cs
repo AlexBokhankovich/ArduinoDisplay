@@ -52,11 +52,9 @@
         public string CountryCode { get; set; }
 
         /// <summary>
-        ///     Gets the current weather.
+        /// The value.
         /// </summary>
-        public string CurrentWeather
-            =>
-                string.IsNullOrEmpty(this.CityName)
+        public string CurrentWeather => string.IsNullOrEmpty(this.CityName)
                     ? this.GetCurrentWeather(this.Coordinate)
                     : this.GetCurrentWeather(this.CityName);
 
@@ -72,7 +70,7 @@
         /// <returns>
         /// The <see cref="string"/>.
         /// </returns>
-        public string Request(string url, HttpMethod method = null)
+        private string Request(string url, HttpMethod method = null)
         {
             method = method == null ? HttpMethod.Get : method;
 

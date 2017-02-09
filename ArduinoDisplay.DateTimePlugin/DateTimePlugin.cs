@@ -20,6 +20,11 @@
         public DateTimeConfig Config { get; set; }
 
         /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
         ///     The name.
         /// </summary>
         public string Name => "DateTime";
@@ -82,9 +87,9 @@
         /// <param name="e">
         ///     The e.
         /// </param>
-        private void DatetimeProviderDataReady(object sender, DateTimeEventArgs e)
+        private void DatetimeProviderDataReady(object sender, DataReadyEventArgs e)
         {
-            var datareadyEventArgs = new DataReadyEventArgs(e.DateTime);
+            var datareadyEventArgs = new DataReadyEventArgs(e.NewData);
             this.OnDataReady(datareadyEventArgs);
         }
     }

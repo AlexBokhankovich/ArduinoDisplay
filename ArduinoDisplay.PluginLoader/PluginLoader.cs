@@ -58,18 +58,24 @@
 
                 foreach (var pluginCfg in config.Plugins)
                 {
+                    if (plugins.Any(p => p.Id == pluginCfg.Id))
+                    {
+                        throw new TypeLoadException($"Couldn't load plugin with the same Id {pluginCfg.Id}");
+                    }
+
+                    if (pluginCfg.Id == null)
+                    {
+                        continue;
+                    }
+
                     var type = pluginTypes.First(t => t.Name == pluginCfg.Name + "Plugin");
                     if (type == null)
                     {
                         continue;
                     }
 
-                    if (pluginCfg.Options == null)
-                    {
-                        continue;
-                    }
-
                     var plugin = (IArduinoDisplayPlugin)Activator.CreateInstance(type);
+                    plugin.Id = pluginCfg.Id;
                     plugin.Configure(pluginCfg.Options);
                     plugins.Add(plugin);
                 }

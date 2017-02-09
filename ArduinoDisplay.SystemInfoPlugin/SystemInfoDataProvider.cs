@@ -3,6 +3,9 @@
     using System;
 
     using ArduinoDisplay.PluginInterface;
+    using ArduinoDisplay.SystemInfoPlugin.OhwMonitor;
+
+    using OpenHardwareMonitor.Hardware;
 
     /// <summary>
     /// The system info data provider.
@@ -18,43 +21,29 @@
         /// <param name="format">
         /// The format.
         /// </param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// </exception>
-        public SystemInfoDataProvider(SysInfoType type, string format = null)
+        public SystemInfoDataProvider(HardwareType hwType, SensorType sensorType, string name, string format = null)
         {
-            this.Type = type;
-
-            switch (type)
-            {
-                case SysInfoType.CpuUtilization:
-                    this.PrefCounterWrapper = new PerformanceCounterWrapper("Processor", "% Processor Time", "_Total");
-                    format = format ?? "CPU: {0}%";
-                    break;
-                case SysInfoType.RamFree:
-                    this.PrefCounterWrapper = new PerformanceCounterWrapper("Memory", "Available MBytes", string.Empty);
-                    format = format ?? "RAM FREE: {0}";
-                    break;
-                case SysInfoType.RamUtilization:
-                    // TODO change
-                    this.PrefCounterWrapper = new PerformanceCounterWrapper("Memory", "Available MBytes", string.Empty);
-                    format = format ?? "RAM Used: {0}";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-
+            this.SensorType = sensorType;
+            this.HardwareType = hwType;
+            this.OpenHwMon = new OpenHardwareMonitorWrapper(hwType, sensorType, name);
+            format = format ?? "{0}";
             this.Format = format;
         }
 
         /// <summary>
-        /// Gets or sets the pref counter wrapper.
+        /// Gets or sets the open hw mon.
         /// </summary>
-        public PerformanceCounterWrapper PrefCounterWrapper { get; set; }
+        public OpenHardwareMonitorWrapper OpenHwMon { get; set; }
 
         /// <summary>
         /// Gets or sets the type.
         /// </summary>
-        public SysInfoType Type { get; set; }
+        public SensorType SensorType { get; }
+
+        /// <summary>
+        /// Gets or sets the hardware type.
+        /// </summary>
+        public HardwareType HardwareType { get; }
 
         /// <summary>
         /// The value.
@@ -74,8 +63,7 @@
         /// </returns>
         private string GetValue()
         {
-            return string.Format(this.Format, this.PrefCounterWrapper.GetCurrentValue());
-            //return string.Format(this.Format, MemoryInfo.ShowMemory());
+            return string.Format(this.Format,Convert.ToInt32(this.OpenHwMon.Value));
         }
     }
 }
