@@ -1,56 +1,27 @@
-/*
- arduino-matrixorbital.ino
- A software emulator for Matrix Orbital character display commands on Arduino.
- 
- V1.5 28/12/2011
- Added fixes by yosoyzenitram, prettified code a little and added all Matrix Obrital commands for display model LK204-25.
- 
- V1.0 6/2/2010
- Coded by giannoug <giannoug@gmail.com>
- Based on code by nuelectronics <http://www.nuelectronics.com/>
- 
- You can use whatever screen size you want, but you will
- have to make proper adjustments to both this file and at
- LCDSmartie's configuration menu or whatever program you
- might use.
- 
- Matrix Orbital LK204-25 manual (for command reference):
- http://www.matrixorbital.ca/manuals/LK_Series/LK204-25/LVK204-25%20%28Rev1.3%29.pdf
- 
- The circuit (make sure to power the LCD):
- * LCD RS pin to digital pin 12
- * LCD E pin to digital pin 11
- * LCD D4 pin to digital pin 5
- * LCD D5 pin to digital pin 4
- * LCD D6 pin to digital pin 3
- * LCD D7 pin to digital pin 2
- * LCD Ve pin (contrast) to digital pin 6
- 
- */
+#include <Wire.h>
+#include <hd44780.h>
+#include <hd44780ioClass/hd44780_I2Cexp.h> // i2c expander i/o class header
 
-#include <LiquidCrystal.h>
+hd44780_I2Cexp lcd; // declare lcd object: auto locate & config exapander chip
 
-// You can define your own pins here.
-#define RS 12
-#define E  11
-#define D4 5
-#define D5 4
-#define D6 3
-#define D7 2
-#define BR 6
+// LCD geometry
+const int LCD_ROWS = 4;
+const int LCD_COLS = 20;
 
-#define VERSION 1
+#define VERSION 123456
 
-#define GPO1 8 // Not yet implemented. (pg. 18 of the manual)
+void setup()
+{
+	// initialize LCD with number of columns and rows: 
+	if( lcd.begin(LCD_COLS, LCD_ROWS))
+	{
+		// begin() failed so blink the onboard LED if possible
 
-LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
-
-void setup() {
-  Serial.begin(19200); // Default baudrate.
-  lcd.begin(20, 4); // Change this for other screen sizes.
-
-  analogWrite(BR, 0); // Set maximum brightness.
-
+		fatalError(1); // this never returns
+	}
+	
+	// Print a message to the LCD
+ Serial.begin(19200); // Default baudrate.
   lcd.print("Arduino");
   lcd.setCursor(1, 1);
   lcd.print("Matrix Orbital!");
@@ -102,7 +73,7 @@ void loop() {
       Serial.print(9); // 9 for LK204-25
       break;
     case 80: // Set contrast (1 parameter, contrast)
-      analogWrite(BR, 0xFF-serial_getch());
+      //analogWrite(BR, 0xFF-serial_getch());
       break;
     case 81: // Auto scroll on
       lcd.autoscroll();
@@ -189,4 +160,8 @@ byte serial_getch() {
   return Serial.read();
 }
 
-
+// fatalError() - loop & blink an error code
+void fatalError(int ecode)
+{
+	hd44780::fatalError(ecode); // does not return
+}
