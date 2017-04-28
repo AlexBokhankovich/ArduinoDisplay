@@ -1,5 +1,6 @@
 ﻿namespace ArduinoDisplay.WindowsService
 {
+    using System;
     using System.ServiceProcess;
 
     internal static class Program
@@ -9,9 +10,16 @@
         /// </summary>
         private static void Main()
         {
-            ServiceBase[] servicesToRun;
-            servicesToRun = new ServiceBase[] { new Service1() };
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            var servicesToRun = new ServiceBase[] { new ArduinoDisplayService() };
             ServiceBase.Run(servicesToRun);
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

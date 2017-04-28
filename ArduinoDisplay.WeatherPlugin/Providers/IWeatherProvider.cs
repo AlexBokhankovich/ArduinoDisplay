@@ -32,5 +32,10 @@
         ///     Gets the current weather.
         /// </summary>
         string CurrentWeather { get; }
+
+        /// <summary>
+        /// Gets the weather data format.
+        /// </summary>
+        WeatherDataFormat WeatherDataFormat { get; }
     }
 }

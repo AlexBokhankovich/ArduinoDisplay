@@ -1,6 +1,6 @@
 ﻿namespace ArduinoDisplay.WindowsService
 {
-    partial class Service1
+    partial class ArduinoDisplayService
     {
         /// <summary> 
         /// Required designer variable.

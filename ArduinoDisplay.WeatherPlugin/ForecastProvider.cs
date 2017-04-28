@@ -1,6 +1,7 @@
 ﻿namespace ArduinoDisplay.WeatherPlugin
 {
     using System;
+    using System.Net;
 
     using ArduinoDisplay.GeoCommon;
     using ArduinoDisplay.GeoLocation;
@@ -12,7 +13,10 @@
     /// </summary>
     public class ForecastProvider : IDataProvider<string>
     {
-        private string format;
+        /// <summary>
+        /// The format.
+        /// </summary>
+        private readonly string format;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ForecastProvider"/> class.
@@ -20,14 +24,18 @@
         /// <param name="weatherProvider">
         /// The weather provider.
         /// </param>
-        /// <param name="weatherProviderapiKey">
-        /// The weather providerapi key.
-        /// </param>
         /// <param name="coord">
-        /// The coord.
+        /// Coordinates of the city to get weather for
         /// </param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// </exception>
+        /// <param name="cityName">
+        /// City name
+        /// </param>
+        /// <param name="countryCode">
+        /// Country code
+        /// </param>
+        /// <param name="format">
+        /// Weather output format
+        /// </param>
         public ForecastProvider(
             IWeatherProvider weatherProvider,
             Coordinate coord = null,
@@ -40,7 +48,7 @@
             coord = coord ?? new GeoLocationProvider().Coordinate;
 
             cityName = cityName ?? geoProv.City;
-            countryCode = geoProv.CountryCode;
+            countryCode = countryCode ?? geoProv.CountryCode;
             weatherProvider.Coordinate = coord;
             weatherProvider.CityName = cityName;
             weatherProvider.CountryCode = countryCode;
@@ -72,8 +80,18 @@
         /// </returns>
         private string GetForecast()
         {
-            var forecast = new ForecastParser(this.WeatherProvider.CurrentWeather).ParseForecast();
-            return string.Format(this.format, forecast.TemperatureC);
+            try
+            {
+                var forecast =
+                    new ForecastParser(this.WeatherProvider.CurrentWeather).ParseForecast(
+                        this.WeatherProvider.WeatherDataFormat);
+                return string.Format(this.format, forecast.TemperatureC.ToString("0.00"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

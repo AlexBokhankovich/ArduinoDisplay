@@ -52,7 +52,7 @@
         "HardwareType": "RAM",
         "SensorType": "Data",
         "SensorName": "Used Memory",
-        "Format": "RamTotal:{0}GB",
+        "Format": "RamUsed:{0}GB",
         "UpdateInterval": "1000"
       }
     },

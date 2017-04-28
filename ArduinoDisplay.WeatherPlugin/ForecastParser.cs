@@ -26,12 +26,36 @@
         public string RawForecasString { get; set; }
 
         /// <summary>
-        ///     The parse forecast.
+        /// The parse forecast.
+        /// </summary>
+        /// <param name="weatherDataFormat">
+        /// The weather Data Format.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        public Forecast ParseForecast(WeatherDataFormat weatherDataFormat)
+        {
+            switch (weatherDataFormat)
+            {
+                case WeatherDataFormat.Json:
+                    return this.ParseJsonForecast();
+                    break;
+                case WeatherDataFormat.Xml:
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(weatherDataFormat), weatherDataFormat, null);
+            }
+        }
+
+        /// <summary>
+        /// The parse json forecast.
         /// </summary>
         /// <returns>
-        ///     The <see cref="string" />.
+        /// The <see cref="Forecast"/>.
         /// </returns>
-        public Forecast ParseForecast()
+        private Forecast ParseJsonForecast()
         {
             dynamic doc = JObject.Parse(this.RawForecasString);
 

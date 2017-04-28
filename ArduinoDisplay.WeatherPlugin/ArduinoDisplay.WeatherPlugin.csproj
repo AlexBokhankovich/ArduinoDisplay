@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="TemperatureUnit.cs" />
     <Compile Include="WeatherConfig.cs" />
+    <Compile Include="WeatherDataFormat.cs" />
     <Compile Include="WeatherPlugin.cs" />
     <Compile Include="Forecast.cs" />
     <Compile Include="ForecastProvider.cs" />

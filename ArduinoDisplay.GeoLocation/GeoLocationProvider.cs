@@ -1,5 +1,6 @@
 ﻿namespace ArduinoDisplay.GeoLocation
 {
+    using System;
     using System.Net.Http;
 
     using ArduinoDisplay.GeoCommon;
@@ -64,7 +65,7 @@
         {
             var location = this.GetRawInfo();
 
-            return new Coordinate { Latitude = location.latitude, Longitude = location.longitude };
+            return location == null ? null : new Coordinate { Latitude = location.latitude, Longitude = location.longitude };
         }
 
         /// <summary>
@@ -75,9 +76,17 @@
         /// </returns>
         private dynamic GetRawInfo()
         {
-            var responseJson = this.Client.GetStringAsync("http://freegeoip.net/json/").Result;
+            try
+            {
+                var responseJson = this.Client.GetStringAsync("http://freegeoip.net/json/").Result;
 
-            return JObject.Parse(responseJson);
+                return JObject.Parse(responseJson);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("error getting coordinates");
+                return null;
+            }
         }
     }
 }

@@ -54,32 +54,16 @@
         /// <summary>
         /// The value.
         /// </summary>
-        public string CurrentWeather => string.IsNullOrEmpty(this.CityName)
+        public string CurrentWeather
+            =>
+                string.IsNullOrEmpty(this.CityName)
                     ? this.GetCurrentWeather(this.Coordinate)
                     : this.GetCurrentWeather(this.CityName);
 
         /// <summary>
-        /// The request.
+        /// Gets the weather data format.
         /// </summary>
-        /// <param name="url">
-        /// The url.
-        /// </param>
-        /// <param name="method">
-        /// The method.
-        /// </param>
-        /// <returns>
-        /// The <see cref="string"/>.
-        /// </returns>
-        private string Request(string url, HttpMethod method = null)
-        {
-            method = method == null ? HttpMethod.Get : method;
-
-            var request = new HttpRequestMessage { RequestUri = new Uri(url), Method = method };
-
-            var response = this.client.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
-
-            return response;
-        }
+        public WeatherDataFormat WeatherDataFormat => WeatherDataFormat.Json;
 
         /// <summary>
         /// The get current weather.
@@ -116,6 +100,37 @@
                 this.Request(
                     this.apiBaseUrl + $"weather?q={city}"
                     + (string.IsNullOrEmpty(country) ? string.Empty : $",{country}") + $"&APPID={this.ApiKey}");
+        }
+
+        /// <summary>
+        /// The request.
+        /// </summary>
+        /// <param name="url">
+        /// The url.
+        /// </param>
+        /// <param name="method">
+        /// The method.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        private string Request(string url, HttpMethod method = null)
+        {
+            try
+            {
+                method = method == null ? HttpMethod.Get : method;
+
+                var request = new HttpRequestMessage { RequestUri = new Uri(url), Method = method };
+
+                var response = this.client.SendAsync(request).Result.Content.ReadAsStringAsync().Result;
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

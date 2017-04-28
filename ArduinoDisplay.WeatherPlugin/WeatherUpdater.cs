@@ -1,6 +1,7 @@
 ﻿namespace ArduinoDisplay.WeatherPlugin
 {
-    using System.Globalization;
+    using System;
+    using System.Net;
 
     using ArduinoDisplay.PluginInterface;
 
@@ -31,10 +32,16 @@
         /// </param>
         protected override void OnTimerElapsed(object state)
         {
-            var forecast = this.Provider.Value;
-           
-            var args = new DataReadyEventArgs(forecast);
-            this.InvokeDataReadyEvent(args);
+            try
+            {
+                var forecast = this.Provider.Value;
+
+                var args = new DataReadyEventArgs(forecast);
+                this.InvokeDataReadyEvent(args);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 }
